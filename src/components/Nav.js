@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg'
 
 class Nav extends Component {
   render() {
     return (
-      <nav className="navbar is-primary">
+      <nav className="navbar is-danger">
 	<div className="container">
 	  <div className="navbar-brand">
 	    <a className="navbar-item" href="../">
-	    <img src={logo} className="logo" alt="logo" />
 	    <i>El Baratón</i>
 	    </a>
 	    <Burger dataTarget="navbarMenu" />
 	  </div>
-	  <div id="navMenu" className="navbar-menu">
+	  <div id="navbarMenu" className="navbar-menu">
 	    <div className="navbar-end">
 	      <div className="tabs is-right">
 		<a className="navbar-item is-white" href="admin.html">
