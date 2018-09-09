@@ -4,6 +4,7 @@ import '../assets/App.css';
 import Nav from './Nav';
 import Menu from './Menu';
 import Sort from './Sort';
+import Products from './Products';
 
 class App extends Component {
   render() {
@@ -12,11 +13,12 @@ class App extends Component {
 	<Nav />
 	<div className="container">
 	  <div className="columns">
-	    <div className="column is-3">
+	    <div className="column is-2">
 	      <Menu />
 	    </div>
-	    <div className="column is-9">
+	    <div className="column is-10">
 	      <Sort />
+	      <Products />
 	    </div>
 	  </div>
 	</div>
