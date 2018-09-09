@@ -4,8 +4,11 @@ class Categories extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: [{id: '1', name:'Cargando...'}],
+      sublevels: [{id: '1', name:'Cargando...'}],
+      chosen: 0
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   // I could fetch the data from an URL or import it locally
@@ -13,17 +16,30 @@ class Categories extends Component {
   componentWillMount() {
     fetch("http://localhost:3000/categories.json")
       .then(response => response.json())
-      .then(data => this.setState({ categories: data.categories }));
+    // The original data starts with a 'categories' array, in which every
+    // element is an Object, I assigned that array directly to the 'sublevels'
+    // variable which in turn belongs to the state of the Categories class.
+
+    // This way, I can map every object of the original array to a Category
+    // component, and then it solves itself recursively. This happens in the
+    // render function.
+      .then(data => this.setState({ sublevels: data.categories }));
+  }
+
+  handleClick(event) {
+    this.setState({ chosen: event.target.id });
   }
 
   render() {
     return (
-      <div className="categories">
-	<p className="menu-label">
-	  Categorías
-	</p>
+      <div id="categories">
 	<ul className="menu-list">
-	  <List categories={this.state.categories} />
+	  {this.state.sublevels.map(category => // Map elements to Category components
+	    { return <Category
+	      key={category.id}
+	      info={category} IdGetter={this.handleClick} />
+	    }
+	  )}
 	</ul>
       </div>
     );
@@ -32,28 +48,24 @@ class Categories extends Component {
 
 class Category extends React.Component {
   render() {
-    return (
-      <li><a>{this.props.info.name}</a>
-	{ // These two lines make sure to render a sublevel only if it exists
-	  this.props.info.sublevels &&
-	    <List categories={this.props.info.sublevels} />
-	}
-      </li>
-    );
-  }
-}
-
-class List extends React.Component {
-  render() {
-    return (
-      <ul className="menu-list">
-	{ // For every element in the array, return a Category component
-	  this.props.categories.map(category => {
-	    return <Category key={category.id} info={category} />
-	  })
-	}
-      </ul>
-    )
+    if (this.props.info.sublevels) {
+      return (
+	<li>
+	  <p>{this.props.info.name}</p>
+	  <ul className="menu-list">
+	    {this.props.info.sublevels.map(category =>
+	      { return <Category key={category.id} info={category} IdGetter={this.props.IdGetter}/> }
+	    )}
+	  </ul>
+	</li>
+      )
+    } else {
+      return (
+	<a id={this.props.info.id} onClick={this.props.IdGetter} >
+	  {this.props.info.name}
+	</a>
+      )
+    }
   }
 }
 
