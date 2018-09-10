@@ -55,6 +55,15 @@ class Filters extends Component {
 }
 
 class Available extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.props.handleChange(event);
+  }
+
   render() {
     return(
       <div className="field">
@@ -62,7 +71,7 @@ class Available extends Component {
 	  <label className="checkbox">
 	    <a><input
 		checked={this.props.available}
-		onChange={this.props.handleChange}
+		onChange={this.handleChange}
 		name="available"
 		type="checkbox"
 	      /> Disponible</a>
@@ -73,7 +82,7 @@ class Available extends Component {
 	    <a>
 	      <input
 		checked={this.props.not_available}
-		onChange={this.props.handleChange}
+		onChange={this.handleChange}
 		name="not_available"
 		type="checkbox"
 	      /> No Disponible</a>
@@ -85,6 +94,15 @@ class Available extends Component {
 }
 
 class Range extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.props.handleChange(event);
+  }
+
   render() {
     return(
       <div className="range">
@@ -92,7 +110,7 @@ class Range extends Component {
 	  <p className="control">
 	    <input
 	      value={this.props.price_min}
-	      onChange={this.props.handleChange}
+	      onChange={this.handleChange}
 	      name="price_min"
 	      className="input"
 	      placeholder="desde"
@@ -104,7 +122,7 @@ class Range extends Component {
 	  <p className="control">
 	    <input
 	      value={this.props.price_max}
-	      onChange={this.props.handleChange}
+	      onChange={this.handleChange}
 	      name="price_max"
 	      className="input"
 	      placeholder="hasta"
@@ -118,6 +136,15 @@ class Range extends Component {
 }
 
 class Quantity extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.props.handleChange(event);
+  }
+
   render() {
     return(
       <div className="quantity">
@@ -125,7 +152,7 @@ class Quantity extends Component {
 	  <p className="control">
 	    <input
 	      value={this.props.stock_min}
-	      onChange={this.props.handleChange}
+	      onChange={this.handleChange}
 	      name="stock_min"
 	      className="input"
 	      placeholder="desde"
@@ -137,7 +164,7 @@ class Quantity extends Component {
 	  <p className="control">
 	    <input
 	      value={this.props.stock_max}
-	      onChange={this.props.handleChange}
+	      onChange={this.handleChange}
 	      name="stock_max"
 	      className="input"
 	      placeholder="hasta"
