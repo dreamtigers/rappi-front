@@ -31,17 +31,12 @@ class App extends Component {
     target.setAttribute('class', target.className === '' ? 'is-hide' : '');
   }
 
-  updateFilters(event) {
-    const target = event.target;
-    const name = target.name;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-
-    console.log(this.state);
+  updateFilters(name, value) {
     this.setState({ [name]: value });
   }
 
-  updateCategories(event) {
-    this.setState({ id: event.target.id });
+  updateCategories(updatedId) {
+    this.setState({ id: updatedId });
   }
 
   render() {
@@ -58,19 +53,20 @@ class App extends Component {
 		> Categorías </a>
 		<br />
 		<Categories id={this.state.id}
-		  updateFilters={this.updateCategories}
+		  updateCategories={this.updateCategories}
 		/>
 		<a className="menu-label"
 		  name ="filters"
 		  onClick={this.handleClick}
 		> Filtros </a>
-		<Filters filters={this.state.filters}
+		<Filters filters={this.state}
 		  updateFilters={this.updateFilters}
 		/>
 	      </aside>
 	    </div>
 	    <div className="column is-10">
 	      <Sort />
+	      <Products filters={this.state} />
 	    </div>
 	  </div>
 	</div>

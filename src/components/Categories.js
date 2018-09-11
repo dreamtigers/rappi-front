@@ -5,7 +5,7 @@ class Categories extends Component {
     super(props);
     this.state = {
       sublevels: [{id: '1', name:'Cargando...'}],
-      chosen: 0
+      id: ''
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -26,7 +26,9 @@ class Categories extends Component {
   }
 
   handleClick(event) {
-    this.setState({ chosen: event.target.id });
+    event.preventDefault();
+    this.setState({ id: event.target.id });
+    this.props.updateCategories(event.target.id);
   }
 
   render() {

@@ -5,12 +5,12 @@ class Filters extends Component {
     super(props);
 
     this.state = {
-      available: true,
-      not_available: true,
-      price_min: '',
-      price_max: '',
-      stock_min: '',
-      stock_max: ''
+      available: this.props.filters.available,
+      not_available: this.props.filters.not_available,
+      price_min: this.props.filters.price_min,
+      price_max: this.props.filters.price_max,
+      stock_min: this.props.filters.stock_min,
+      stock_max: this.props.filters.stock_max
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,6 +21,7 @@ class Filters extends Component {
     const name = target.name;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
+    this.props.updateFilters(name, value);
     this.setState({ [name]: value });
   }
 

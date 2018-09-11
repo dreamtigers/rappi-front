@@ -5,8 +5,15 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [{id: '1', name:'Cargando...'}],
+      products: [
+	{id: '1', name:'Cargando...', price: '$1,000', available: true}
+      ],
     };
+
+    this.byId = this.byId.bind(this);
+    this.byAvailability = this.byAvailability.bind(this);
+    this.byPrice = this.byPrice.bind(this);
+    this.byStock = this.byStock.bind(this);
   }
 
   // I could fetch the data from an URL or import it locally
@@ -17,15 +24,48 @@ class Products extends Component {
       .then(data => this.setState({ products: data.products }));
   }
 
-  render() {
-    //console.log(this.state.products)
+  byId(product) {
+    // If the filter.id equals the product.id or the filters.id doesn't exist
+    return (Number(this.props.filters.id) === product.sublevel_id ||
+      this.props.filters.id === '');
+  }
+
+  byAvailability(product) {
     return (
-      <Masonry className={'columns'} >
-	{this.state.products.map(product =>
-	  { return <Product
-	    key={product.id}
-	    info={product} />
-	  }
+      // If the available filter is true and the product is available
+      (this.props.filters.available && product.available) || // Or
+      // If the not_available filter is true and the product isn't available
+      (this.props.filters.not_available && !product.available)
+    )
+  }
+
+  byPrice(product) {
+    let price = Number(product.price.replace(/[^0-9\.-]+/g,""));
+    let min = Number(this.props.filters.price_min);
+    let max = (this.props.filters.price_max === '') ? Infinity :
+      this.props.filters.price_max;
+    return (price >= min && price <= max);
+  }
+
+  byStock(product) {
+    let stock = product.quantity;
+    let min = Number(this.props.filters.stock_min);
+    let max = (this.props.filters.stock_max === '') ? Infinity :
+      this.props.filters.stock_max;
+    return (stock >= min && stock <= max);
+  }
+
+  render() {
+    let products = this.state.products
+      .filter(this.byId)
+      .filter(this.byAvailability)
+      .filter(this.byPrice)
+      .filter(this.byStock);
+
+    return (
+      <Masonry className={'columns is-desktop'}>
+	{products.map(product =>
+	  { return <Product key={product.id} info={product} /> }
 	)}
       </Masonry>
     );
@@ -55,15 +95,14 @@ class Product extends Component {
 	      </div>
 	    </div>
 	    <div className="content">
+	      {this.props.info.quantity} en inventario.
 	      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 	      Phasellus nec iaculis mauris.
 	      {availability}
 	    </div>
 	  </div>
 	  <footer className="card-footer">
-	    <a href="" className="card-footer-item">Save</a>
-	    <a href="" className="card-footer-item">Edit</a>
-	    <a href="" className="card-footer-item">Delete</a>
+	    <a href="" className="card-footer-item">Agregar al Carrito</a>
 	  </footer>
 	</article>
       </div>
