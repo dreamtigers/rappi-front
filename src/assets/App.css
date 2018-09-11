@@ -9,7 +9,6 @@ nav.navbar {
   margin-bottom: 1rem;
 }
 .navbar-item, .navbar-link {
-  font-size: 14px;
   font-weight: 700;
 }
 .menu-label {
@@ -34,18 +33,6 @@ nav.navbar {
 }
 .card {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
-  margin-bottom: 2rem;
-}
-.card-header-title {
-  color: #8F99A3;
-  font-weight: 400;
-}
-.info-tiles .subtitle {
-  font-weight: 300;
-  color: #8F99A3;
-}
-.hero.welcome .title, .hero.welcome .subtitle {
-  color: hsl(192, 17%, 99%);
 }
 .card .content {
   font-size: 14px;
@@ -57,14 +44,9 @@ nav.navbar {
 }
 .card-footer-item:hover {
 }
-.events-card .card-table {
-  max-height: 250px;
-  overflow-y: scroll;
-}
 .not-available {
   color: #990000;
 }
-
 .is-hide {
   display: none;
 }
