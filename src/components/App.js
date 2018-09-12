@@ -18,11 +18,13 @@ class App extends Component {
       price_min: '',
       price_max: '',
       stock_min: '',
-      stock_max: ''
+      stock_max: '',
+      sort_func: ''
     }
 
     this.updateFilters = this.updateFilters.bind(this);
     this.updateCategories = this.updateCategories.bind(this);
+    this.updateSortFunc = this.updateSortFunc.bind(this);
   }
 
   handleClick(event) {
@@ -37,6 +39,10 @@ class App extends Component {
 
   updateCategories(updatedId) {
     this.setState({ id: updatedId });
+  }
+
+  updateSortFunc(sortFunction) {
+    this.setState({ sort_func: sortFunction });
   }
 
   render() {
@@ -65,8 +71,10 @@ class App extends Component {
 	      </aside>
 	    </div>
 	    <div className="column is-10">
-	      <Sort />
-	      <Products filters={this.state} />
+	      <Sort updateSortFunc={this.updateSortFunc} />
+	      <Products filters={this.state}
+		sortFunc={this.state.sort_func}
+	      />
 	    </div>
 	  </div>
 	</div>

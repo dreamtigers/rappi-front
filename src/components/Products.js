@@ -62,6 +62,10 @@ class Products extends Component {
       .filter(this.byPrice)
       .filter(this.byStock);
 
+    if (this.props.sortFunc) {
+      products.sort(this.props.sortFunc);
+    }
+
     return (
       <Masonry className={'columns is-desktop'}>
 	{products.map(product =>
