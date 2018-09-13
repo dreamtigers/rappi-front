@@ -56,12 +56,12 @@ class Category extends React.Component {
 
   handleClick(event) {
     this.props.IdGetter(event);
-
   }
 
   render() {
+    let component;
     if (this.props.info.sublevels) {
-      return (
+      component = (
 	<li>
 	  <p>{this.props.info.name}</p>
 	  <ul className="menu-list">
@@ -70,14 +70,16 @@ class Category extends React.Component {
 	    )}
 	  </ul>
 	</li>
-      )
+      );
     } else {
-      return (
+      component = (
 	<a id={this.props.info.id} onClick={this.handleClick} >
 	  {this.props.info.name}
 	</a>
-      )
+      );
     }
+
+    return component;
   }
 }
 

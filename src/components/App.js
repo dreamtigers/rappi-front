@@ -51,7 +51,7 @@ class App extends Component {
 	<Nav />
 	<div className="container">
 	  <div className="columns">
-	    <div className="column is-2">
+	    <div className="column is-one-fifth">
 	      <aside className="menu">
 		<a className="menu-label"
 		  name ="categories"
@@ -70,7 +70,7 @@ class App extends Component {
 		/>
 	      </aside>
 	    </div>
-	    <div className="column is-10">
+	    <div className="column">
 	      <Sort updateSortFunc={this.updateSortFunc} />
 	      <Products filters={this.state}
 		sortFunc={this.state.sort_func}

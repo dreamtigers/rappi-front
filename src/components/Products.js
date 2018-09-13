@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Masonry from 'react-masonry-component';
+import placeholder from '../assets/images/640x480.png';
 
 class Products extends Component {
   constructor(props) {
@@ -87,7 +88,7 @@ class Product extends Component {
 	<article className="card">
 	  <div className="card-image">
 	    <figure className="image is-4by3">
-	      <img src="https://bulma.io/images/placeholders/640x480.png"
+	      <img src={placeholder}
 		alt="Placeholder" />
 	    </figure>
 	  </div>

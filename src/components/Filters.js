@@ -69,25 +69,20 @@ class Available extends Component {
     return(
       <div className="field">
 	<div className="control">
-	  <label className="checkbox">
-	    <a><input
+	  <label><a><input
 		checked={this.props.available}
 		onChange={this.handleChange}
 		name="available"
 		type="checkbox"
-	      /> Disponible</a>
-	  </label>
+	      /> Disponible</a></label>
 	</div>
 	<div className="control">
-	  <label className="checkbox">
-	    <a>
-	      <input
+	  <label><a><input
 		checked={this.props.not_available}
 		onChange={this.handleChange}
 		name="not_available"
 		type="checkbox"
-	      /> No Disponible</a>
-	  </label>
+	      /> No Disponible</a></label>
 	</div>
       </div>
     )
