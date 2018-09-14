@@ -82,6 +82,8 @@ class Product extends Component {
     let availability;
     if (!this.props.info.available) {
       availability = <p className="not-available">no disponible</p>
+    } else {
+      availability = <p>{this.props.info.quantity} en inventario.</p>
     }
     return (
       <div className="column is-one-third">
@@ -100,14 +102,12 @@ class Product extends Component {
 	      </div>
 	    </div>
 	    <div className="content">
-	      {this.props.info.quantity} en inventario.
-	      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-	      Phasellus nec iaculis mauris.
 	      {availability}
+	      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 	    </div>
 	  </div>
 	  <footer className="card-footer">
-	    <a href="" className="card-footer-item">Agregar al Carrito</a>
+	    <a className="card-footer-item" onClick={null} >Agregar al Carrito</a>
 	  </footer>
 	</article>
       </div>
