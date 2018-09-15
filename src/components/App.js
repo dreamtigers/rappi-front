@@ -6,6 +6,7 @@ import Categories from './Categories';
 import Filters from './Filters';
 import Sort from './Sort';
 import Products from './Products';
+import Cart from './Cart';
 
 class App extends Component {
   constructor(props) {
@@ -78,6 +79,7 @@ class App extends Component {
 	    </div>
 	  </div>
 	</div>
+	<Cart />
       </div>
     );
   }
