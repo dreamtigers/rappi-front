@@ -8,23 +8,26 @@ import Sort from './Sort';
 import Products from './Products';
 import Cart from './Cart';
 
+const Context = React.createContext();
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      id: '',
-      available: true,
-      not_available: true,
-      price_min: '',
-      price_max: '',
-      stock_min: '',
-      stock_max: '',
+      filters: {
+	id: '',
+	available: true,
+	not_available: true,
+	price_min: '',
+	price_max: '',
+	stock_min: '',
+	stock_max: '',
+      },
       sort_func: ''
     }
 
     this.updateFilters = this.updateFilters.bind(this);
-    this.updateCategories = this.updateCategories.bind(this);
     this.updateSortFunc = this.updateSortFunc.bind(this);
   }
 
@@ -35,11 +38,9 @@ class App extends Component {
   }
 
   updateFilters(name, value) {
-    this.setState({ [name]: value });
-  }
-
-  updateCategories(updatedId) {
-    this.setState({ id: updatedId });
+    let filters = Object.assign({}, this.state.filters);
+    filters[name] = value;
+    this.setState({ filters });
   }
 
   updateSortFunc(sortFunction) {
@@ -50,36 +51,36 @@ class App extends Component {
     return (
       <div className="App">
 	<Nav />
+	<Cart />
 	<div className="container">
 	  <div className="columns">
 	    <div className="column is-one-fifth">
 	      <aside className="menu">
 		<a className="menu-label"
-		  name ="categories"
+		  name="categories"
 		  onClick={this.handleClick}
 		> Categorías </a>
 		<br />
-		<Categories id={this.state.id}
-		  updateCategories={this.updateCategories}
+		<Categories id={this.state.filters.id}
+		  updateFilters={this.updateFilters}
 		/>
 		<a className="menu-label"
-		  name ="filters"
+		  name="filters"
 		  onClick={this.handleClick}
 		> Filtros </a>
-		<Filters filters={this.state}
+		<Filters filters={this.state.filters}
 		  updateFilters={this.updateFilters}
 		/>
 	      </aside>
 	    </div>
 	    <div className="column">
 	      <Sort updateSortFunc={this.updateSortFunc} />
-	      <Products filters={this.state}
+	      <Products filters={this.state.filters}
 		sortFunc={this.state.sort_func}
 	      />
 	    </div>
 	  </div>
 	</div>
-	<Cart />
       </div>
     );
   }

@@ -27,8 +27,9 @@ class Categories extends Component {
 
   handleClick(event) {
     event.preventDefault();
+
     this.setState({ id: event.target.id });
-    this.props.updateCategories(event.target.id);
+    this.props.updateFilters('id', event.target.id);
   }
 
   render() {

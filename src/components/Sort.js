@@ -25,7 +25,7 @@ class Sort extends Component {
     var key = newType ?
       function(x) {
 	if (typeof(x[field]) === 'string') {
-	  return newType(x[field].replace(/[^0-9\.-]+/g,""));
+	  return newType(x[field].replace(/[^0-9.-]+/g,""));
 	} else {
 	  return newType(x[field])
 	}

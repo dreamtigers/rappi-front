@@ -41,7 +41,7 @@ class Products extends Component {
   }
 
   byPrice(product) {
-    let price = Number(product.price.replace(/[^0-9\.-]+/g,""));
+    let price = Number(product.price.replace(/[^0-9.-]+/g,""));
     let min = Number(this.props.filters.price_min);
     let max = (this.props.filters.price_max === '') ? Infinity :
       this.props.filters.price_max;
