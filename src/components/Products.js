@@ -81,9 +81,7 @@ class Product extends Component {
   render() {
     let availability;
     if (!this.props.info.available) {
-      availability = <p className="not-available">no disponible</p>
-    } else {
-      availability = <p>{this.props.info.quantity} en inventario.</p>
+      availability = <span className="not-available">No disponible.</span>
     }
     return (
       <div className="column is-one-third">
@@ -102,7 +100,7 @@ class Product extends Component {
 	      </div>
 	    </div>
 	    <div className="content">
-	      {availability}
+	      <p>{availability} {this.props.info.quantity} en inventario.</p>
 	      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 	    </div>
 	  </div>
