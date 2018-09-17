@@ -8,7 +8,7 @@ import Sort from './Sort';
 import Products from './Products';
 import Cart from './Cart';
 
-const Context = React.createContext();
+import { CartProvider } from './Context';
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +24,10 @@ class App extends Component {
 	stock_min: '',
 	stock_max: '',
       },
-      sort_func: ''
+      sort_func: '',
+      cart: {
+	products: ['123','234','345']
+      }
     }
 
     this.updateFilters = this.updateFilters.bind(this);
@@ -51,7 +54,6 @@ class App extends Component {
     return (
       <div className="App">
 	<Nav />
-	<Cart />
 	<div className="container">
 	  <div className="columns">
 	    <div className="column is-one-fifth">
@@ -75,9 +77,12 @@ class App extends Component {
 	    </div>
 	    <div className="column">
 	      <Sort updateSortFunc={this.updateSortFunc} />
-	      <Products filters={this.state.filters}
-		sortFunc={this.state.sort_func}
-	      />
+	      <CartProvider>
+		<Products filters={this.state.filters}
+		  sortFunc={this.state.sort_func}
+		/>
+		<Cart />
+	      </CartProvider>
 	    </div>
 	  </div>
 	</div>

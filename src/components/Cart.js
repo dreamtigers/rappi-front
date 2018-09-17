@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
+import { CartConsumer } from './Context';
+
 class Cart extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       id: 'shopping-cart',
-      products: [],
     }
 
     this.closeModal = this.closeModal.bind(this);
@@ -23,14 +24,21 @@ class Cart extends Component {
     return (
       <div id="shopping-cart" className="modal">
 	<div className="modal-background" onClick={this.closeModal} />
-	<div class="modal-card">
-	  <header class="modal-card-head">
-	    <p class="modal-card-title">Carrito</p>
+	<div className="modal-card">
+	  <header className="modal-card-head">
+	    <p className="modal-card-title">Carrito</p>
 	  </header>
-	  <section class="modal-card-body">
+	  <section className="modal-card-body">
+	    <CartConsumer>
+	      {(context) => (
+		console.log(context),
+		<a className="card-footer-item" onClick={null}>
+		</a>
+	      )}
+	    </CartConsumer>
 	  </section>
-	  <footer class="modal-card-foot">
-	    <button class="button is-success">Comprar</button>
+	  <footer className="modal-card-foot">
+	    <button className="button is-success">Comprar</button>
 	  </footer>
 	</div>
       </div>
