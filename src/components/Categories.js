@@ -14,7 +14,7 @@ class Categories extends Component {
   // I could fetch the data from an URL or import it locally
   // But I chose to fetch to make it feel... more real?
   componentWillMount() {
-    fetch("http://localhost:3000/categories.json")
+    fetch("categories.json")
       .then(response => response.json())
     // The original data starts with a 'categories' array, in which every
     // element is an Object, I assigned that array directly to the 'sublevels'

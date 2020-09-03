@@ -20,7 +20,7 @@ class Products extends Component {
   // I could fetch the data from an URL or import it locally
   // But I chose to fetch to make it feel... more real?
   componentWillMount() {
-    fetch("http://localhost:3000/products.json")
+    fetch("products.json")
       .then(response => response.json())
       .then(data => this.setState({ products: data.products }));
   }
