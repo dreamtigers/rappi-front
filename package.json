@@ -2,6 +2,7 @@
   "name": "rappi-front",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://dreamtigers.github.io/rappi-front",
   "dependencies": {
     "bulma": "^0.7.1",
     "react": "^16.5.0",
